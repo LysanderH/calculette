@@ -9,9 +9,19 @@ $signs = [
 ];
 $sign = '';
 $m='';
-if (isset($_GET['valone']) && isset($_GET['valtwo']) && isset($_GET['sign'])) {
-    $valone = (int)$_GET['valone'];
-    $valtwo = (int)$_GET['valtwo'];
+if (isset($_GET['valone']) && isset($_GET['valtwo']) && isset($_GET['sign']) ) {
+    if (is_numeric($_GET['valone'])){
+        $valone = $_GET['valone'];
+    } else {
+        $m = 'La première valeur n’est pas un nombre';
+        $valone = 0;
+    }
+    if (is_numeric($_GET['valtwo'])){
+        $valtwo = $_GET['valtwo'];
+    } else {
+        $m = 'La deuxième valeur n’est pas un nombre';
+        $valtwo = 0;
+    }
     $sign = $_GET['sign'];
     if (in_array($sign, array_keys($signs))) {
         $sign = $signs[$sign];
@@ -31,7 +41,7 @@ switch ($sign) {
         $m = $valone . ' * ' . $valtwo . ' = ' . ($valone * $valtwo);
         break;
     case '/':
-        if ($valtwo === 0) {
+        if ($valtwo == 0) {
             $m = 'Si tu peux diviser par 0 je suis le pâpe';
         } else {
             $m = $valone . ' / ' . $valtwo . ' = ' . ($valone / $valtwo);
