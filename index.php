@@ -5,7 +5,8 @@ $signs = [
     'addition' => '+',
     'soubstraction' => '-',
     'multiplication' => '*',
-    'division' => '/'
+    'division' => '/',
+    'exponentiel'=>'exp'
 ];
 $sign = '';
 $m='';
@@ -31,6 +32,13 @@ if (isset($_GET['valone']) && isset($_GET['valtwo']) && isset($_GET['sign']) ) {
 }
 
 switch ($sign) {
+    case 'exp':
+        if (is_int($valtwo*1)){
+            $m = $valone. '<sup>' . $valtwo .'</sup> = ' . pow($valone, $valtwo);
+        }else{
+            $m = 'Le deuxième nombre doit être un entier';
+        }
+        break;
     case '+':
         $m = $valone . ' + ' . $valtwo . ' = ' . ($valone + $valtwo);
         break;
@@ -48,7 +56,7 @@ switch ($sign) {
         }
         break;
 }
-
+var_dump(is_int($valtwo));
 ?>
 <!doctype html>
 <html lang="fr">
@@ -69,6 +77,7 @@ switch ($sign) {
     <input type="submit" value="soubstraction" name="sign">
     <input type="submit" value="multiplication" name="sign">
     <input type="submit" value="division" name="sign">
+    <input type="submit" value="exponentiel" name="sign">
 </form>
 <p>
 <?= $m; ?>
