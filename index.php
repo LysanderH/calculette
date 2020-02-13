@@ -56,7 +56,6 @@ switch ($sign) {
         }
         break;
 }
-var_dump(is_int($valtwo));
 ?>
 <!doctype html>
 <html lang="fr">
