@@ -19,6 +19,26 @@ if (isset($_GET['valone']) && isset($_GET['valtwo']) && isset($_GET['sign'])) {
         $m = 'Ceci n’est pas une manipulation possible';
     }
 }
+
+switch ($sign) {
+    case '+':
+        $m = $valone . ' + ' . $valtwo . ' = ' . ($valone + $valtwo);
+        break;
+    case '-':
+        $m = $valone . ' - ' . $valtwo . ' = ' . ($valone - $valtwo);
+        break;
+    case '*':
+        $m = $valone . ' * ' . $valtwo . ' = ' . ($valone * $valtwo);
+        break;
+    case '/':
+        if ($valtwo === 0) {
+            $m = 'Si tu peux diviser par 0 je suis le pâpe';
+        } else {
+            $m = $valone . ' / ' . $valtwo . ' = ' . ($valone / $valtwo);
+        }
+        break;
+}
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -41,29 +61,7 @@ if (isset($_GET['valone']) && isset($_GET['valtwo']) && isset($_GET['sign'])) {
     <input type="submit" value="division" name="sign">
 </form>
 <p>
-    <?php
-    switch ($sign) {
-        case '+':
-            echo $valone . ' + ' . $valtwo . ' = ' . ($valone + $valtwo);
-            break;
-        case '-':
-            echo $valone . ' - ' . $valtwo . ' = ' . ($valone - $valtwo);
-            break;
-        case '*':
-            echo $valone . ' * ' . $valtwo . ' = ' . ($valone * $valtwo);
-            break;
-        case '/':
-            if ($valtwo === 0) {
-                $m = 'Si tu peux diviser par 0 je suis le pâpe';
-            }else{
-                echo $valone . ' / ' . $valtwo . ' = ' . ($valone / $valtwo);
-            }
-            break;
-    }
-    if ($m){
-        echo $m;
-    }
-    ?>
+<?= $m; ?>
 </p>
 </body>
 </html>
